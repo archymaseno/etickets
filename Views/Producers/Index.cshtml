@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Producer>
+@{
+	ViewData["Title"] = "Producers";
+}
+
+<div class="col-md-8 offset-2">
+	<div>
+		<h1>
+			A List of producer
+		</h1>
+	</div>
+	<div class="row">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						@Html.DisplayNameFor(m=>m.ProfilePictureURL)
+					</th>
+					<th>
+						@Html.DisplayNameFor(m=>m.FullName)
+					</th>
+					<th>
+						@Html.DisplayNameFor(m=>m.Bio)
+					</th>
+					<th>
+						Action
+					</th>
+				</tr>
+			</thead>
+			@foreach (var item in Model)
+			{
+				<tbody>
+					<tr>
+						<td>
+							<img src="@item.ProfilePictureURL" class="rounded-circle" style="max-width:90px" />
+						</td>
+						<td>
+							@Html.DisplayFor(m=>item.FullName)
+						</td>
+						<td>
+							@item.Bio
+						</td>
+						<td>
+							<a class="btn-outline-info  " asp-controller="Producers" asp-action="Update" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i> Edit</a>
+							<a class="btn-outline-success" asp-controller="Producers" asp-action="Details" asp-route-id="@item.Id"><i class="bi bi-eye"></i> Details</a>
+							<a class="btn-outline-danger " asp-controller="Producers" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i> Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			}
+		</table>
+		<div class="form-group">
+			<input type="submit" value="Add New" class="btn btn-outline-success float-right" />
+		</div>
+	</div>
+</div>
